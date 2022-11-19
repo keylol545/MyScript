@@ -17,7 +17,7 @@ local drop = Section1:NewDropdown("Select Player!", "Click To Select", Plr, func
     PlayerTP = t
  end)
 
-Section:NewToggle("Auto Farm + Auto Take", "ToggleInfo", function(state)
+Section:NewToggle("Auto Farm + Auto Collect", "ToggleInfo", function(state)
 _G.AutoFarm = state
     if _G.AutoFarm then
         while _G.AutoFarm do wait()

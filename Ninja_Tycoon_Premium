@@ -1,0 +1,61 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("TITLE", "DarkTheme")
+local Tab = Window:NewTab("AutoFarm")
+local Tab1 = Window:NewTab("Teleport")
+local Section = Tab:NewSection("Section Name")
+local Section1 = Tab1:NewSection("Section Name")
+local clickdetector = game:GetService("Workspace")["Zednov's Tycoon Kit"].Tycoons["Kazeka Clan"].PurchasedObjects.Mine.Clicker.ClickDetector
+Plr = {}
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(Plr,v.Name) 
+end
+function teleport()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-620.46167, 180.305496, -325.723114, -0.0653371587, -2.95982314e-08, -0.997863233, -3.05353764e-09, 1, -2.9461674e-08, 0.997863233, 1.12207077e-09, -0.0653371587)
+end
+
+local drop = Section1:NewDropdown("Select Player!", "Click To Select", Plr, function(t)
+    PlayerTP = t
+ end)
+
+Section:NewToggle("Auto Farm + Auto Take", "ToggleInfo", function(state)
+_G.AutoFarm = state
+    if _G.AutoFarm then
+        while _G.AutoFarm do wait()
+            fireclickdetector(clickdetector)
+            teleport()
+        end
+    end
+end)
+
+Section:NewToggle("Auto Farm", "ToggleInfo", function(state)
+    _G.AutoFarm = state
+        if _G.AutoFarm then
+            while _G.AutoFarm do wait()
+                fireclickdetector(clickdetector)
+            end
+        end
+    end)
+    
+
+Section:NewButton("Refresh Dropdown","Refresh Dropdown", function()
+    drop:Refresh(Plr)
+end)
+
+Section1:NewToggle("Auto Tp", "", function(t)
+_G.TPPlayer = t
+    while _G.TPPlayer do wait() 
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+    end
+end)
+
+Section1:NewButton("Click To TP", "", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+end)
+
+Section1:NewButton("GoHome", "", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-632.826599, 174.885086, -349.257507, -0.0348870084, -3.26446781e-08, -0.999391258, 2.66477262e-09, 1, -3.27575869e-08, 0.999391258, -3.80596488e-09, -0.0348870084)
+end)
+
+Section:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.RightControl, function()
+    Library:ToggleUI()
+end)

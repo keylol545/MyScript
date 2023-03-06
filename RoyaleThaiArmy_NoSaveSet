@@ -4736,7 +4736,7 @@ end
 end})
 
 
-Main_1_left:dropdown({name = "Dropdown",def = "",max = 10,options = Plr,callback = function(vu)
+Main_1_left:dropdown({name = "Players",def = "",max = 10,options = Plr,callback = function(vu)
 	PlayersC = vu
 end})
 

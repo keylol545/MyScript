@@ -4677,7 +4677,7 @@ function sections:configloader(props)
 end
 
 
-local window = library:new({textsize = 13.5,font = Enum.Font.RobotoMono,name = "Kenei UI",color = Color3.fromRGB(0,255,255)})
+local window = library:new({textsize = 13.5,font = Enum.Font.RobotoMono,name = "ZRIX HUB [BETA VERSION]",color = Color3.fromRGB(0,255,255)})
 
 local Main_1_Page = window:page({name = "Main 1"})
 local Main_2_Page = window:page({name = "Main 2"})

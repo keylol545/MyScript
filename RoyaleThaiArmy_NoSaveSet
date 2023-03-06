@@ -4809,10 +4809,10 @@ Main_1_right:button({name = "Remove Tool",callback = function()
 	end
 end})
 
-Main_1_right:slider({name = "WalkSpeed", Default = game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower, Minimum = 0, Maximum = 100, Decimals = 10, Suffix = "%", Callback = function(vu)
+Main_1_right:slider({name = "WalkSpeed", Default = 16, Minimum = 0, Maximum = 100, Decimals = 10, Suffix = "%", Callback = function(vu)
 	game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = vu
 end})
 
-Main_1_right:slider({name = "JumpPower", Default = game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower, Minimum = 0, Maximum = 500, Decimals = 10, Suffix = "%", Callback = function(vu)
+Main_1_right:slider({name = "JumpPower", Default = 50, Minimum = 0, Maximum = 500, Decimals = 10, Suffix = "%", Callback = function(vu)
 	game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = vu
 end})

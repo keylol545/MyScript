@@ -4810,10 +4810,8 @@ end})
 
 spawn(function()
     while wait() do
-    if _G.TP then
-        while wait() do
+        if _G.TP then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayersC].Character.HumanoidRootPart.CFrame
         end
-    end
     end
 end)

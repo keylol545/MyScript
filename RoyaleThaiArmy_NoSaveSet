@@ -4749,15 +4749,6 @@ end})
 
 Main_1_left:toggle({name = "Teleport",def = false,callback = function(vu)
 _G.TP = vu
-spawn(function()
-	while wait() do
-		if _G.TP then
-			while task.wait() do
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayersC].Character.HumanoidRootPart.CFrame
-			end
-		end
-	end
-end)
 end})
 
 
@@ -4816,3 +4807,13 @@ end})
 Main_1_right:slider({name = "JumpPower", Default = 50, Minimum = 0, Maximum = 500, Decimals = 10, Suffix = "%", Callback = function(vu)
 	game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = vu
 end})
+
+spawn(function()
+    while wait() do
+    if _G.TP then
+        while wait() do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayersC].Character.HumanoidRootPart.CFrame
+        end
+    end
+    end
+end)

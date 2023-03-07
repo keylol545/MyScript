@@ -76,8 +76,15 @@ LeftGroupBox:AddDropdown('MyMultiDropdown', {
     end
 })
 
+LeftGroupBox:AddButton('Refresh Fruit', function(value)
+    table.clear(SelectedPly)
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(SelectedPly,v.Name)
+    end
+SetValue(v.Name)
+end)
 
-local MyButton = LeftGroupBox:AddButton('Button', function()
+local MyButton = LeftGroupBox:AddButton('Use Skill', function()
 for i,v in next,mutiskill do
     local arge = {
         [1] = Options.Skill.Value,

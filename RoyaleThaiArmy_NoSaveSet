@@ -4809,9 +4809,11 @@ Main_1_right:slider({name = "JumpPower", Default = 50, Minimum = 0, Maximum = 50
 end})
 
 spawn(function()
-    while wait() do
-        if _G.TP then
+while wait() do
+    if _G.TP then
+        repeat task.wait()
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayersC].Character.HumanoidRootPart.CFrame
+        until _G.TP == false
         end
     end
 end)

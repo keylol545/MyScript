@@ -4677,16 +4677,16 @@ function sections:configloader(props)
 end
 
 
-local window = library:new({textsize = 13.5,font = Enum.Font.RobotoMono,name = "ZRIX HUB [BETA VERSION]",color = Color3.fromRGB(0,255,255)})
+local window = library:new({textsize = 13.5,font = Enum.Font.RobotoMono,name = "ZRIX HUB [BETA VERSION]",color = Color3.fromRGB(255,0,0)})
 
 local Main_1_Page = window:page({name = "Main 1"})
 local Main_2_Page = window:page({name = "Main 2"})
 
-local Main_1_left = Main_1_Page:section({name = "General",side = "left",size = 1000})
+local Main_1_left = Main_1_Page:section({name = "General",side = "left",size = 180})
+local Main_1_5_left = Main_1_Page:section({name = "Miscellaneous",side = "left",size = 70})
 local Main_1_right = Main_1_Page:section({name = "Tool",side = "right",size = 250})
 
-local Main_2_left = Main_2_Page:section({name = "Main",side = "left",size = 250})
-local Main_2_right = Main_2_Page:section({name = "Main",side = "left",size = 250})
+local Main_2_right = Main_2_Page:section({name = "Main",side = "right",size = 250})
 
 local plr = game:GetService("Players").LocalPlayer
 local mouse = plr:GetMouse()
@@ -4740,7 +4740,20 @@ Main_1_left:dropdown({name = "Players",def = "",max = 10,options = Plr,callback 
 	PlayersC = vu
 end})
 
+Main_1_5_left:button({name = "Teleport Tool",callback = function()
+    local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Click Teleport"
 
+tool.Activated:Connect(function()
+local root = plr.Character.HumanoidRootPart
+local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
+local offset = pos-root.Position
+root.CFrame = root.CFrame+offset
+end)
+
+tool.Parent = plr.Backpack
+end})
 
 
 Main_1_left:button({name = "Teleport",callback = function()
@@ -4809,11 +4822,25 @@ Main_1_right:slider({name = "JumpPower", Default = 50, Minimum = 0, Maximum = 50
 end})
 
 spawn(function()
-while wait() do
-    if _G.TP then
-        repeat task.wait()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayersC].Character.HumanoidRootPart.CFrame
-        until _G.TP == false
+    while wait() do
+        if _G.TP then
+            repeat task.wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayersC].Character.HumanoidRootPart.CFrame
+            until _G.TP == false
         end
     end
 end)
+
+
+local Main_2_left = Main_2_Page:section({name = "MISC",side = "left",size = 250})
+
+Main_2_left:button({name = "Rejoin Server",callback = function()
+    local ts = game:GetService("TeleportService")
+    local p = game:GetService("Players").LocalPlayer
+    ts:Teleport(game.PlaceId, p)
+end})
+Main_2_left:button({name = "Hop Server",callback = function()
+    local ts = game:GetService("TeleportService")
+    local p = game:GetService("Players").LocalPlayer
+    ts:Teleport(game.PlaceId)
+end})

@@ -88,11 +88,17 @@ LeftGroupBox:AddDropdown('MyMultiDropdown', {
 })
 
 LeftGroupBox:AddButton('Refresh Skill', function(value)
-    table.clear(SelectedPly)
-    for i,v in pairs(game:GetService("Players"):GetChildren()) do
-    table.insert(SelectedPly,v.Name)
+    table.clear(Skille)
+    Options.MyMultiDropdown:SetValue({
+        Options.MyMultiDropdown.Value
+    })
+    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        testStrTrimmed = string.gsub(v.Name, '%s+', '')
+        table.insert(Skille,testStrTrimmed)
+        Options.MyMultiDropdown:SetValue({
+            testStrTrimmed
+        })
     end
-SetValue(v.Name)
 end)
 
 local MyButton = LeftGroupBox:AddButton('Use Skill', function()

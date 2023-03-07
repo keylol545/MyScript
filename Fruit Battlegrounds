@@ -38,6 +38,17 @@ local Tabs = {
 
 
 local LeftGroupBox = Tabs.Main:AddLeftGroupbox('Groupbox')
+local RightGroupBox = Tabs.Main:AddRightGroupbox('Status')
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Boss Killed : '..BossKillse)
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Bounty : '..Bountye)
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Streak : '..Streake)
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Gems : '..Gemse)
+RightGroupBox:AddDivider()
+
 
 LeftGroupBox:AddDropdown('Skill', {
     Values = Fruit,

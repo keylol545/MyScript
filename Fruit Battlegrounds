@@ -1,0 +1,153 @@
+if game.CoreGui:FindFirstChild("ScreenGui") then
+	game.CoreGui:FindFirstChild("ScreenGui"):Destroy()
+end
+
+Fruit = {}
+for i,v in pairs(game:GetService("ReplicatedStorage").Assets.Fruits:GetChildren()) do
+    table.insert(Fruit,v.Name)
+end
+Skille = {}
+
+for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    testStrTrimmed = string.gsub(v.Name, '%s+', '')
+    table.insert(Skille,testStrTrimmed)
+end
+local Streake = game:GetService("Players").localPlayer.leaderstats.Streak.Value
+local Bountye = game:GetService("Players").localPlayer.leaderstats.Bounty.Value
+local BossKillse = game:GetService("Players").localPlayer["MAIN_DATA"].BossKills.Value
+local Gemse = game:GetService("Players").localPlayer["MAIN_DATA"].Gems.Value
+
+
+local repo = 'https://raw.githubusercontent.com/wally-rblx/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+
+local Window = Library:CreateWindow({
+    Title = 'ZRIX HUB',
+    Center = true, 
+    AutoShow = true,
+})
+
+local Tabs = {
+    Main = Window:AddTab('Main'), 
+    ['UI Settings'] = Window:AddTab('UI Settings'),
+}
+
+
+
+local LeftGroupBox = Tabs.Main:AddLeftGroupbox('Groupbox')
+
+LeftGroupBox:AddDropdown('Skill', {
+    Values = Fruit,
+    Default = 0, -- number index of the value / string
+    Multi = false, -- true / false, allows multiple choices to be selected
+
+    Text = 'Select Your Fruit!',
+    Tooltip = 'This is a tooltip', -- Information shown when you hover over the textbox
+})
+
+
+LeftGroupBox:AddToggle('MyToggle', {
+    Text = 'AutoFarm',
+    Default = false, -- Default value (true / false)
+    Tooltip = 'This is a tooltip', -- Information shown when you hover over the toggle
+})
+
+
+LeftGroupBox:AddToggle('FTP', {
+    Text = 'SafeFarm',
+    Default = false, -- Default value (true / false)
+    Tooltip = 'This is a tooltip', -- Information shown when you hover over the toggle
+})
+
+
+local mutiskill
+LeftGroupBox:AddDropdown('MyMultiDropdown', {
+    Values = Skille,
+    Default = 0, 
+    Multi = true,
+
+    Text = 'Skill',
+    Tooltip = 'This is a tooltip',
+    Callback  = function(si)
+        mutiskill = si
+    end
+})
+
+
+local MyButton = LeftGroupBox:AddButton('Button', function()
+for i,v in next,mutiskill do
+    local arge = {
+        [1] = Options.Skill.Value,
+        [2] = i,
+        [3] = {
+            ["MouseRay"] = {
+                ["Normal"] = Vector3.new(0, 1, 0),
+                ["Direction"] = Vector3.new(128.4889373779297, -86.8646469116211, 256.7978210449219),
+                ["Origin"] = Vector3.new(-416.5577087402344, 753.8207397460938, 379.5727233886719),
+                ["Instance"] = workspace.Map.Part,
+                ["Distance"] = 56.60049819946289,
+                ["Position"] = Vector3.new(-392.31591796875, 737.43212890625, 428.0223388671875),
+                ["Material"] = Enum.Material.Grass
+            }
+        }
+    }
+
+    game:GetService("ReplicatedStorage").Replicator:InvokeServer(unpack(arge))
+end
+end)
+
+
+local RightGroupBox = Tabs.Main:AddRightGroupbox('Status')
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Boss Killed : '..BossKillse)
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Bounty : '..Bountye)
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Streak : '..Streake)
+RightGroupBox:AddDivider()
+RightGroupBox:AddLabel('Gems : '..Gemse)
+RightGroupBox:AddDivider()
+
+
+
+
+Toggles.MyToggle:OnChanged(function()
+    while task.wait() do
+        pcall(function()
+            if Toggles.FTP.Value then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(506.637695, 696.93219, -1428.22046, 0.95189333, 5.45299983e-08, 0.306429625, -3.38834347e-08, 1, -7.2697226e-08, -0.306429625, 5.88171183e-08, 0.95189333)
+            end
+        end)
+    end
+end)
+
+Toggles.MyToggle:OnChanged(function()
+    while wait() do
+        pcall(function()
+        if Toggles.MyToggle.Value then
+            for i,v in next,mutiskill do
+            local arge = {
+                [1] = Options.Skill.Value,
+                [2] = i,
+                [3] = {
+                    ["MouseRay"] = {
+                        ["Normal"] = Vector3.new(0, 1, 0),
+                        ["Direction"] = Vector3.new(128.4889373779297, -86.8646469116211, 256.7978210449219),
+                        ["Origin"] = Vector3.new(-416.5577087402344, 753.8207397460938, 379.5727233886719),
+                        ["Instance"] = workspace.Map.Part,
+                        ["Distance"] = 56.60049819946289,
+                        ["Position"] = Vector3.new(-392.31591796875, 737.43212890625, 428.0223388671875),
+                        ["Material"] = Enum.Material.Grass
+                    }
+                }   
+            }
+
+            game:GetService("ReplicatedStorage").Replicator:InvokeServer(unpack(arge))
+            end
+        end
+        end)
+    end
+end)

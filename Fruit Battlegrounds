@@ -87,7 +87,7 @@ LeftGroupBox:AddDropdown('MyMultiDropdown', {
     end
 })
 
-LeftGroupBox:AddButton('Refresh Fruit', function(value)
+LeftGroupBox:AddButton('Refresh Skill', function(value)
     table.clear(SelectedPly)
     for i,v in pairs(game:GetService("Players"):GetChildren()) do
     table.insert(SelectedPly,v.Name)
